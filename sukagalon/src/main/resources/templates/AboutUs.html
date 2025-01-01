@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - SukaGalon</title>
+    <link rel="stylesheet" th:href="@{/AboutUs.css}">
+    <script th:src="@{/AboutUs.js}"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">SukaGalon</div>
+        <div class="nav-menu">
+            <ul class="nav-items">
+                <li><a th:href="@{/}">Home</a></li>
+                <li><a th:href="@{/AboutUs}">About Us</a></li>
+                <li><a th:href="@{/Kontak}">Kontak</a></li>
+            </ul>
+        </div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+    <div class="about-section">
+        <h1>About Us</h1>
+        <p>
+            SukaGalon adalah website yang mempermudah pembeli dalam memesan galon dengan cepat dan praktis. 
+            Kami melayani area khusus Sukabirus dan Sukapura di sekitar Telkom University, Bandung.
+        </p>
+        <p>
+            Dengan SukaGalon, Anda dapat memesan galon dari berbagai merek tanpa harus keluar rumah. 
+            Kami berkomitmen untuk memberikan layanan terbaik dan memastikan kebutuhan air minum Anda terpenuhi dengan mudah.
+        </p>
+        <h2>Our Team</h2>
+        <div class="team-photo">
+            <img th:src="@{/powerenjer.jpg}" alt="Owner Photo">
+        </div>
+        <div class="team-info">
+            <ul>
+                <li><strong>Awanda Puspa Larasati</strong> - 1301223101</li>
+                <li><strong>Cahaya Calida Jihan S</strong> - 1301223201</li>
+                <li><strong>Gisa Kayla Syahla</strong> - 1301223237</li>
+                <li><strong>Nurul Izzah Abdussalam Z</strong> - 1301223385</li>
+                <li><strong>Purinda Kyla Larissa</strong> - 1301223289</li>
+            </ul>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 SukaGalon. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="AboutUs.js"></script>
+</body>
+</html>

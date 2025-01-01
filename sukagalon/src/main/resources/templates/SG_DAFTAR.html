@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Akun</title>
+    <link rel="stylesheet" th:href="@{/SG_DAFTAR.css}">
+    <script th:src="@{/SG_DAFTAR.js}"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img th:src="@{/koko.png}" alt="Logo" class="mascot-image left">
+            <h1>Daftar Akun</h1>
+            <img th:src="@{/koko.png}" alt="Logo" class="mascot-image right">
+        </div>
+        
+        <form form th:action="@{/Daftar}" method="post">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" required>
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword">Konfirmasi Password</label>
+                <input type="password" id="confirmPassword" required>
+            </div>
+            <div id="emailError" class="error-message" style="display: none; color: red;">Email sudah terdaftar. Silakan gunakan email lain.</div>
+            <button type="submit">Daftar</button>
+            <div class="login-link">
+                Sudah punya akun? <a th:href="@{/Login}">Login</a>
+            </div>
+        </form>
+    </div>
+    
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <div class="success-icon">✓</div>
+            <h2>Pendaftaran Berhasil!</h2>
+            <p>Anda akan dialihkan ke halaman login...</p>
+        </div>
+    </div>
+
+</body>
+</html>

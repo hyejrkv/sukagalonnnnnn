@@ -1,0 +1,160 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
+
+/* Base Styling */
+body {
+  font-family: 'Nunito', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to bottom, #e3f2fd, #ffffff);
+  color: #333;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #007bff;
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.nav-menu ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-items li {
+  margin: 0 1rem;
+}
+
+.nav-items a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.nav-items a:hover {
+  color: #b3e5fc;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.hamburger span {
+  background: #fff;
+  height: 3px;
+  width: 25px;
+  margin: 3px 0;
+}
+
+/* Kontak Section */
+.kontak-section {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  background: #ffffff;
+}
+
+.kontak-section h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #007bff;
+}
+
+.kontak-section p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin: 1rem 0;
+}
+
+.kontak-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.kontak-item {
+  background: #e0f2f1;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  max-width: 500px;
+  transition: background 0.3s ease;
+}
+
+.kontak-item:hover {
+  background: #b3e5fc; /* Hover background color */
+}
+
+.kontak-item h2 {
+  font-size: 1.5rem;
+  color: #007bff;
+}
+
+.kontak-item a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.kontak-item a:hover {
+  color: #b3e5fc;
+}
+
+/* Footer */
+.footer {
+  background-color: #007bff;
+  color: #fff;
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.footer p {
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .nav-menu ul {
+      display: none;
+      flex-direction: column;
+      background-color: #007bff;
+      position: absolute;
+      top: 100%;
+      right: 0;
+      width: 100%;
+  }
+
+  .hamburger {
+      display: flex;
+  }
+
+  .kontak-section h1 {
+      font-size: 2rem;
+  }
+
+  .kontak-info {
+      flex-direction: column;
+  }
+
+  .kontak-item {
+      width: 100%;
+  }
+}

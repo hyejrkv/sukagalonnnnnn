@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontak - SukaGalon</title>
+    <link rel="stylesheet" th:href="@{/Kontak.css}">
+   
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">SukaGalon</div>
+        <div class="nav-menu">
+            <ul class="nav-items">
+                <li><a th:href="@{/}">Home</a></li>
+                <li><a th:href="@{/AboutUs}">About Us</a></li>
+                <li><a th:href="@{/Kontak}">Kontak</a></li>
+            </ul>
+        </div>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <div class="kontak-section">
+        <h1>Kontak Kami</h1>
+        <p>Untuk pertanyaan atau informasi lebih lanjut, silakan hubungi kami melalui salah satu cara di bawah ini.</p>
+
+        <div class="kontak-info">
+            <div class="kontak-item">
+                <h2>Instagram</h2>
+                <p>Follow kami di Instagram: <a th:href="@{https://www.instagram.com/sukagalon}" target="_blank">@sukagalon</a></p>
+            </div>
+            <div class="kontak-item">
+                <h2>WhatsApp</h2>
+                <p>Hubungi kami melalui WhatsApp: <a th:href="@{https://wa.me/6281585813432}" target="_blank">+62 815-8581-3432</a></p>
+            </div>
+            <div class="kontak-item">
+                <h2>Alamat</h2>
+                <p>Telkom University, Bandung</p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 SukaGalon. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

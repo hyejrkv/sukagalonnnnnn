@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SukaGalon - Beli Galon Air Jadi Lebih Praktis!</title>
+    
+    <link rel="stylesheet" th:href="@{/index.css}">
+    <script th:src="@{/index.js}"></script>
+</head>
+
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <div class="nav-brand">SukaGalon</div>
+            <div class="nav-menu">
+                <ul class="nav-items">
+                    <li><a th:href="@{/}">Home</a></li>
+                    <li><a th:href="@{/AboutUs}">About Us</a></li>
+                    <li><a th:href="@{/Kontak}">Kontak</a></li>
+                </ul>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+
+        <main class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">Beli galon air jadi<br>lebih praktis!</h1>
+                <a th:href="@{/Login}" class="explore-btn">Login</a>
+            </div>
+
+            <div class="hero-image">
+                <div class="mascot-container">
+                    <!-- Galon Mascot -->
+                    <div class="mascot">
+                        <img th:src="@{/koko.png}" alt="Galon Mascot">
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 SukaGalon. All rights reserved.</p>
+        </div>
+    </footer>
+    
+</body>
+</html>

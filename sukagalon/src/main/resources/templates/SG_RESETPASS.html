@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Password - SukaGalon</title>
+    <link rel="stylesheet" th:href="@{/SG_RESETPASS.css}">
+    <script th:src="@{/SG_RESETPASS.js}"></script>
+</head> 
+<body>
+    <div class="container">
+        <div class="reset-card">
+            <div class="mascot">
+                <img th:src="@{/koko.png}" alt="Mascot" class="mascot-image left">
+                <h1>Reset Password</h1>
+                <img th:src="@{/koko.png}" alt="Mascot" class="mascot-image right">
+            </div>
+            <p class="instruction-text">
+                Masukkan email dan password baru Anda untuk melanjutkan.
+            </p>
+            <form id="resetForm" onsubmit="handleResetPassword(event)">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        required
+                        placeholder="Masukkan email Anda"
+                        class="form-input"
+                    >
+                </div>
+                <div class="form-group">
+                    <label for="newPassword">Password Baru</label>
+                    <input 
+                        type="password" 
+                        id="newPassword" 
+                        name="newPassword" 
+                        required
+                        placeholder="Masukkan password baru"
+                        class="form-input"
+                    >
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Konfirmasi Password</label>
+                    <input 
+                        type="password" 
+                        id="confirmPassword" 
+                        name="confirmPassword" 
+                        required
+                        placeholder="Ulangi password baru"
+                        class="form-input"
+                    >
+                </div>
+                <button type="submit" class="reset-btn">Reset Password</button>
+                <p class="back-text">
+                    <a th:href="@{/SG_LOGIN.html}" class="back-link">Kembali ke Login</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Alert Modal -->
+    <div id="alertModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <h2>Reset Password</h2>
+            <p id="modalMessage"></p>
+            <button onclick="closeModal()" class="modal-btn">OK</button>
+        </div>
+    </div>
+
+</body>
+</html>
