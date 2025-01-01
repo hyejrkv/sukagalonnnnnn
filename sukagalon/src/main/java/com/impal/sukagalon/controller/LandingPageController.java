@@ -21,15 +21,8 @@ public class LandingPageController {
         return "Kontak";
     }
 
-    @GetMapping("/buyer/sg-belanja")
-    public String showBelanja(){
-        return "SG_BELANJA";
-    }
-    
-    @GetMapping("/admin/dashboard")
-    public String showAdminDb(){
+    @GetMapping("/Dashboard")
+    public String dashboardadmin(){
         return "ADMIN-DASHBOARD";
     }
-
-    
 }

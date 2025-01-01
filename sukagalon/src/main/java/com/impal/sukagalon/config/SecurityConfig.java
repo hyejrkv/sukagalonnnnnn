@@ -31,23 +31,20 @@ public class SecurityConfig {
                                  "/Kontak.css", "/AboutUs.html", "/Kontak.html", "/Kontak.css", "/AboutUs", 
                                  "/powerenjer.jpg", "/Kontak", "/Login", "/SG_LOGIN.html", "/SG_LOGIN.css", 
                                  "/SG_LOGIN.js", "/Daftar", "/SG_DAFTAR.html", "/SG_DAFTAR.css", "/SG_DAFTAR.js",
-                                 "/SG_RESETPASS.css", "/SG_RESETPASS.html", "/SG_RESETPASS.js", "/Reset").permitAll() // Allow public access to landing page and static resources
-                .requestMatchers("/admin/**").hasRole("ADMIN")
+                                 "/SG_RESETPASS.css", "/SG_RESETPASS.html", "/SG_RESETPASS.js", "/Reset", "/Belanja", 
+                                 "/SG_BELANJA.html", "/SG_BELANJA.css", "/SG_BELANJA.js", "/static/**","/*.png", "/*.jpg", 
+                                 "/*.jpeg", "/*.css", "/*.js", "/Dashboard","/ADMIN-DASHBOARD.html", "/ADMIN-DASHBOARD.css",
+                                 "/ADMIN-DASHBOARD.js", "/ADMIN-KELOLA-PRODUK.html","/ADMIN-KELOLA-PRODUK.css",
+                                 "/ADMIN-KELOLA-PRODUK.js", "/ADMIN-HISTORY.html", "/ADMIN-HISTORY.css", "/ADMIN-HISTORY.js",
+                                 "/AdminProduk", "/AdminHistory", "/ADMIN-KELOLA-PRODUK.html", "/ADMIN-HISTORY.html").permitAll() // Allow public access to landing page and static resources
+                .requestMatchers("/admin/**","/KelolaProduk", "AdminHistory", "/Dashboard","/ADMIN-DASHBOARD.html", "/ADMIN-DASHBOARD.css","/ADMIN-DASHBOARD.js", "/ADMIN-KELOLA-PRODUK.html","/ADMIN-KELOLA-PRODUK.css","/ADMIN-KELOLA-PRODUK.js", "/ADMIN-HISTORY.html", "/ADMIN-HISTORY.css", "/ADMIN-HISTORY.js").hasRole("ADMIN")
                 .requestMatchers("/buyer/**").hasRole("BUYER")
                 .anyRequest().authenticated() // Secure all other endpoints
             )
             .formLogin(login -> login
                 .loginPage("/Login")
-                .loginProcessingUrl("/perform_login")
-                .successHandler((request, response, authentication) -> {
-                    String role = authentication.getAuthorities().iterator().next().getAuthority();
-                    if (role.equals("ROLE_ADMIN")) {
-                        response.sendRedirect("/admin/dashboard");
-                    } else {
-                        response.sendRedirect("/buyer/sg-belanja");
-                    }
-                })
-                
+                .successHandler(new CustomAuthenticationHandler())
+                .failureUrl("/Login?error=true")
                 .permitAll()
             )
             .logout(logout -> logout

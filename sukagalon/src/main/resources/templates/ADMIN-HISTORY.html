@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelola Riwayat Pemesanan Pembeli</title>
+    <link rel="stylesheet" th:href="@{ADMIN-HISTORY.css}">
+</head>
+<body>
+    <div class="dashboard">
+        <aside class="sidebar">
+            <div class="logo">
+                <img th:src="@{koko.png}" alt="SukaGalon Logo">
+                <h2>SukaGalon</h2>
+            </div>
+            <nav class="menu">
+                <ul>
+                    <a th:href="@{/AdminHistory}">Kelola Riwayat Pemesanan Pembeli</a>
+                    <a th:href="@{/AdminProduk}">Kelola Produk</a>
+                </ul>
+            </nav>
+        </aside>
+
+        <div class="main-content">
+            <header class="navbar">
+                <div class="nav-title">
+                    <h1>Kelola Riwayat Pemesanan Pembeli</h1>
+                </div>
+                <div class="profile-menu">
+                    <button onclick="toggleProfileMenu()" class="profile-btn">👤 Profile</button>
+                    <div class="dropdown" id="profileDropdown">
+                        <p id="userEmail"></p>
+                        <a th:href="@{/Logout}" id="logout" onclick="logout()">Keluar</a>
+                    </div>
+                </div>
+            </header>
+            <section class="buyer-history">
+                <div class="user-list">
+                    <h2>Daftar Pembeli</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Email</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="userTableBody">
+                            <tr th:each="m : ${userList}">
+                                <td th:text="${m.idUser}"></td>
+                                <td th:text="${m.email}"></td>
+                                <td>
+                                    <a class="profile-btn" th:href="@{/mobil/edit(id=${m.idUser})}">Edit</a>
+                                    
+                                </td>
+                            </tr>
+                        </tbody>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="order-history">
+                    <h2>Riwayat Pemesanan</h2>
+                    <!--<button onclick="showAddOrderModal()" class="add-btn">Tambah Pesanan Baru</button>-->
+                    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID Pesanan</th>
+                                <th>Tanggal</th>
+                                <th>Produk</th>
+                                <th>Jumlah</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="orderTableBody">
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="orderModal" class="modal">
+                    <div class="modal-content">
+                        <h2 id="modalTitle">Tambah Pesanan Baru</h2>
+                        <form id="orderForm">
+                            <div class="form-group">
+                                <label for="orderDate">Tanggal:</label>
+                                <input type="date" id="orderDate" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="product">Produk:</label>
+                                <select id="product" required>
+                                    <!-- Product options will be populated here -->
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="quantity">Jumlah:</label>
+                                <input type="number" id="quantity" min="1" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="status">Status:</label>
+                                <select id="status" required>
+                                    <option value="pending">Pending</option>
+                                    <option value="processing">Processing</option>
+                                    <option value="completed">Completed</option>
+                                    <option value="cancelled">Cancelled</option>
+                                </select>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit">Simpan</button>
+                                <button type="button" onclick="closeOrderModal()">Batal</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <script th:src="@{ADMIN-HISTORY.js}"></script>
+</body>
+</html>

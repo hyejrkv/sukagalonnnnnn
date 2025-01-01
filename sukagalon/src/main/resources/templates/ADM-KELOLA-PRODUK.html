@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelola Produk</title>
+    <link rel="stylesheet" th:href="@{/ADM-KELOLA-PRODUK.css}">
+</head>
+<body>
+    <div class="dashboard">
+        <aside class="sidebar">
+            <div class="logo">
+                <img th:src="@{koko.png}" alt="SukaGalon Logo">
+                <h2>SukaGalon</h2>
+            </div>
+            <nav class="menu">
+                <ul>
+                    <a th:href="@{/AdminHistory}">Kelola Riwayat Pemesanan Pembeli</a>
+                    <a th:href="@{/AdminProduk}">Kelola Stok</a>
+                </ul>
+            </nav>
+        </aside>
+
+        <div class="main-content">
+            <header class="navbar">
+                <div class="nav-title">
+                    <h1>Kelola Produk</h1>
+                </div>
+                <div class="profile-menu">
+                    <button onclick="toggleProfileMenu()" class="profile-btn">👤 Profile</button>
+                    <div class="dropdown" id="profileDropdown">
+                        <p id="userEmail"></p>
+                        <a th:href="@{/Logout}" id="logout" onclick="logout()">Keluar</a>
+                    </div>
+                </div>
+            </header>
+
+            <section class="product-management">
+                <!-- Product list table -->
+                <div class="product-list">
+                    <h2>Daftar Produk</h2>
+                    <!--<button onclick="showAddProductModal()" class="add-btn">Tambah Produk Baru</button>-->
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID Produk</th>
+                                <th>Nama Produk</th>
+                                <th>Harga</th>
+                                <th>Stok</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="productTableBody">
+                            <!-- Product data will be populated here -->
+                            <tr th:each="m : ${produkList}">
+                                <td th:text="${m.idProduk}"></td>
+                                <td th:text="${m.merk}"></td>
+                                <td th:text="${m.harga}"></td>
+                                <td th:text="${m.stok}"></td>
+                                <td>
+                                    <a class="profile-btn" th:href="@{/mobil/edit(id=${m.idProduk})}">Edit</a>
+                                    
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="productModal" class="modal">
+                    <div class="modal-content">
+                        <h2 id="modalTitle">Tambah Produk Baru</h2>
+                        <form id="productForm">
+                            <div class="form-group">
+                                <label for="productName">Nama Produk:</label>
+                                <input type="text" id="productName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="productPrice">Harga:</label>
+                                <input type="number" id="productPrice" min="0" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="productStock">Stok:</label>
+                                <input type="number" id="productStock" min="0" required>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit">Simpan</button>
+                                <button type="button" onclick="closeProductModal()">Batal</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script th:src="@{ADM-KELOLA-PRODUK.js}"></script>
+</body>
+</html>

@@ -16,8 +16,8 @@
             </div>
             <nav class="menu">
                 <ul>
-                    <a th:href="@{ADMIN-HISTORY.html}">Kelola Riwayat Pemesanan Pembeli</a>
-                    <a th:href="@{ADM-KELOLA-PRODUK.html}">Kelola Produk</a>
+                    <a th:href="@{/AdminHistory}">Kelola Riwayat Pemesanan Pembeli</a>
+                    <a th:href="@{/AdminProduk}">Kelola Produk</a>
                 </ul>
             </nav>
         </aside>
@@ -31,7 +31,7 @@
                     <button onclick="toggleProfileMenu()" class="profile-btn">👤 Profile</button>
                     <div class="dropdown" id="profileDropdown">
                         <p id="userEmail" ></p>
-                        <a th:href="@{ADMIN-LOGIN.html}" id="logout" onclick="logout()">Keluar</a>
+                        <a th:href="@{/Logout}" id="logout" onclick="logout()">Keluar</a>
                     </div>
                 </div>
             </header>

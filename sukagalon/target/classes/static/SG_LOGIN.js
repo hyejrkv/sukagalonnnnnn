@@ -3,7 +3,7 @@
     { email: "admin@sukagalon.com", password: "admin123" },
     { email: "user1@example.com", password: "userpass1" }
 ];*/
-
+/*
 // Fungsi untuk menangani login
 async function handleLogin(event) {
     event.preventDefault();
@@ -43,7 +43,7 @@ async function handleLogin(event) {
     } catch (error) {
         showAlert('Terjadi kesalahan. Silakan coba lagi.');
     }
-}
+}*/
 /*
 function handleLogin(event) {
     event.preventDefault();

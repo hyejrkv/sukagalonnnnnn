@@ -10,7 +10,7 @@
     <nav class="navbar">
         <div class="nav-links">
             <a th:href="@{index.html}" class="nav-link">Home</a>
-            <a th:href="@{SG_BELANJA.html}" class="nav-link active">Belanja</a>
+            <a th:href="@{/Belanja}" class="nav-link active">Belanja</a>
         </div>
         <div class="nav-right">
             <div class="cart-icon" onclick="toggleCart()">
@@ -20,8 +20,8 @@
                 <button onclick="toggleProfileMenu()" class="profile-btn">👤 Profile</button>
                 <div id="profileDropdown" class="dropdown-content">
                     <span id="profileEmail"> Email User</span> 
-                    <a href="SG_HISTORY.html">Riwayat Pembelian</a>
-                    <a href="SG_LOGIN.html">Keluar</a>
+                    <a th:href="@{/BuyerHistory}">Riwayat Pembelian</a>
+                    <a th:href="@{/Logout}">Keluar</a>
                 </div>
             </div>            
         </div>
@@ -41,57 +41,57 @@
             <img th:src="@{le minerale.jpeg}" alt="Le Minerale 15L" class="product-image">
             <h3>Le Minerale 15L</h3>
             <p>Rp 22.000</p>
-            <p class="stock-info">Stok: 10</p> <!-- Menampilkan stok produk -->
+            <p class="stock-info">Stok: <span th:text="${stok1}"></span></p> <!-- Menampilkan stok produk -->
             <button class="btn btn-primary" onclick="addToCart('Le Minerale 15L', 22000, 'le minerale.jpeg')">
                 Beli Sekarang
             </button>
         </div>
         <div class="product-card">
-            <img src="le minerale 5l.jpg" alt="Le Minerale 5L" class="product-image">
+            <img th:src="@{/le minerale 5l.jpg}" alt="Le Minerale 5L" class="product-image">
             <h3>Le Minerale 5L</h3>
             <p>Rp 15.000</p>
-            <p class="stock-info">Stok: 8</p> <!-- Menampilkan stok produk -->
+            <p class="stock-info">Stok: <span th:text="${stok2}"></span></p> <!-- Menampilkan stok produk -->
             <button class="btn btn-primary" onclick="addToCart('Le Minerale 5L', 15000, 'le minerale 5l.jpg')">
                 Beli Sekarang
             </button>
         </div>
         <div class="product-card">
-            <img src="CLEO.jpeg" alt="Cleo 19L" class="product-image">
+            <img th:src="@{CLEO.jpeg}" alt="Cleo 19L" class="product-image">
             <h3>Cleo - 19L</h3>
             <p>Rp 34.000</p>
-            <p class="stock-info">Stok: 5</p> <!-- Menampilkan stok produk -->
+            <p class="stock-info">Stok: <span th:text="${stok3}"></span></p> <!-- Menampilkan stok produk -->
             <button class="btn btn-primary" onclick="addToCart('Cleo 19L', 34000, 'CLEO.jpeg')">
                 Beli Sekarang
             </button>
         </div>
         <div class="product-card">
-            <img src="cleo MINI.png" alt="Cleo 6L" class="product-image">
+            <img th:src="@{cleo MINI.png}" alt="Cleo 6L" class="product-image">
             <h3>Cleo 6L</h3>
             <p>Rp 19.000</p>
-            <p class="stock-info">Stok: 12</p> <!-- Menampilkan stok produk -->
+            <p class="stock-info">Stok: <span th:text="${stok4}"></span></p> <!-- Menampilkan stok produk -->
             <button class="btn btn-primary" onclick="addToCart('Cleo 6L', 19000, 'cleo MINI.png')">
                 Beli Sekarang
             </button>
         </div>
         <div class="product-card">
-            <img src="Cryst.jpg" alt="Crystalline 6L" class="product-image">
+            <img th:src="@{Cryst.jpg}" alt="Crystalline 6L" class="product-image">
             <h3>Crystalline 6L</h3>
             <p>Rp 14.000</p>
-            <p class="stock-info">Stok: 15</p> <!-- Menampilkan stok produk -->
+            <p class="stock-info">Stok: <span th:text="${stok5}"></span></p> <!-- Menampilkan stok produk -->
             <button class="btn btn-primary" onclick="addToCart('Crystalline 6L', 14000, 'Cryst.jpg')">
                 Beli Sekarang
             </button>
         </div>
         <div class="product-card">
-            <img src="cryst 19l.jpg" alt="Crystalline 19L" class="product-image">
+            <img th:src="@{cryst 19l.jpg}" alt="Crystalline 19L" class="product-image">
             <h3>Crystalline 19L</h3>
             <p>Rp 58.000</p>
-            <p class="stock-info">Stok: 3</p> <!-- Menampilkan stok produk -->
+            <p class="stock-info">Stok: <span th:text="${stok6}"></span></p> <!-- Menampilkan stok produk -->
             <button class="btn btn-primary" onclick="addToCart('Crystalline 19L', 58000, 'cryst 19l.jpg')">
                 Beli Sekarang
             </button>
         </div>
     </div>
-    <script src="SG_BELANJA.js"></script>
+    
 </body>
 </html>

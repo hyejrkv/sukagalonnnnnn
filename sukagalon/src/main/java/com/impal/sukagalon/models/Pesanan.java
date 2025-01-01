@@ -26,7 +26,6 @@ public class Pesanan {
     @Column(nullable = false)
     private LocalDateTime tanggalPesanan;
     
-    private String alamatPengiriman;
     
     @OneToMany(mappedBy = "pesanan", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PesananDetail> pesananDetails = new ArrayList<>();
@@ -90,14 +89,6 @@ public class Pesanan {
 
     public void setTanggalPesanan(LocalDateTime tanggalPesanan) {
         this.tanggalPesanan = tanggalPesanan;
-    }
-
-    public String getAlamatPengiriman() {
-        return alamatPengiriman;
-    }
-
-    public void setAlamatPengiriman(String alamatPengiriman) {
-        this.alamatPengiriman = alamatPengiriman;
     }
 
     public void setPesananDetails(List<PesananDetail> pesananDetails) {
