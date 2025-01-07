@@ -31,7 +31,12 @@
         <main class="hero">
             <div class="hero-content">
                 <h1 class="hero-title">Beli galon air jadi<br>lebih praktis!</h1>
-                <a th:href="@{/Login}" class="explore-btn">Login</a>
+                <a 
+                th:if="${session.user==null}"
+                th:href="@{/Login}" class="explore-btn">Login</a>
+                <a 
+                th:if="${session.user!=null && session.user.getRole().equals('BUYER')}"
+                th:href="@{/Belanja}" class="explore-btn">Belanja</a>
             </div>
 
             <div class="hero-image">

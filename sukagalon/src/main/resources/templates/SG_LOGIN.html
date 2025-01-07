@@ -19,6 +19,7 @@
                 <a th:href="@{/Daftar}" class="register-link">Daftar</a>
             </p>
             <form th:action="@{/Login}" method="post">
+                
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input 
@@ -49,7 +50,9 @@
                     <input type="checkbox" id="remember" name="remember">
                     <label for="remember">Ingat Saya</label>
                 </div>
-                <a th:href="@{/Belanja}">klik dulu </a><a th:href="@{/Dashboard}">admin</a>
+                <div th:if="${message}" style="text-align: center; color: green; padding: 2mm;" th:text="${message}"></div>
+
+                <div th:if="${error}" style="text-align: center; color: red;padding: 2mm;" th:text="${error}"></div>
                 <button type="submit" class="login-btn">Login</button>
 
             </form>

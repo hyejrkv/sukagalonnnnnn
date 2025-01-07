@@ -29,7 +29,7 @@
                 <div class="profile-menu">
                     <button onclick="toggleProfileMenu()" class="profile-btn">👤 Profile</button>
                     <div class="dropdown" id="profileDropdown">
-                        <p id="userEmail"></p>
+                        <p th:text="${session.user.getEmail()}"></p>
                         <a th:href="@{/Logout}" id="logout" onclick="logout()">Keluar</a>
                     </div>
                 </div>

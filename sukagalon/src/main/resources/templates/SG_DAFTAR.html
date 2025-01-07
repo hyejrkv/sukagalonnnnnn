@@ -8,6 +8,24 @@
     <script th:src="@{/SG_DAFTAR.js}"></script>
 </head>
 <body>
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const errorMessage = document.getElementById('error-message');
+            // Clear previous error messages
+            errorMessage.style.display = 'none'; // Hide error message initially
+            errorMessage.textContent = ''; // Clear previous text
+            if (password !== confirmPassword) {
+                event.preventDefault();
+                errorMessage.textContent = 'Password dan konfirmasi password tidak cocok!'; // Set custom error message
+                errorMessage.style.color = 'red'; // Optional: Change text color
+                errorMessage.style.display = 'block'; // Show error message
+            } else {
+                errorMessage.style.display = 'none'; // Hide error message
+            }
+        });
+    </script>
     <div class="container">
         <div class="logo">
             <img th:src="@{/koko.png}" alt="Logo" class="mascot-image left">
@@ -15,20 +33,22 @@
             <img th:src="@{/koko.png}" alt="Logo" class="mascot-image right">
         </div>
         
-        <form form th:action="@{/Daftar}" method="post">
+        <form form id="registrationForm" th:action="@{/Daftar}" method="post">
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" id="email" required>
+                <input type="email" id="email" name ="email" required>
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" id="password" required>
+                <input type="password" id="password" name="password" required>
             </div>
             <div class="form-group">
                 <label for="confirmPassword">Konfirmasi Password</label>
-                <input type="password" id="confirmPassword" required>
+                <input type="password" id="confirmPassword" name = "confirmPassword" required>
             </div>
-            <div id="emailError" class="error-message" style="display: none; color: red;">Email sudah terdaftar. Silakan gunakan email lain.</div>
+            <!--<div id="emailError" class="error-message" style="display: none; color: red;">Email sudah terdaftar. Silakan gunakan email lain.</div>-->
+            <div th:if="${error}" style="text-align: center; color: red; padding: 2mm;" th:text="${error}"></div>
+            <div id="error-message" class="error"></div>
             <button type="submit">Daftar</button>
             <div class="login-link">
                 Sudah punya akun? <a th:href="@{/Login}">Login</a>

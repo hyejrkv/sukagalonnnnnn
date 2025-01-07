@@ -9,7 +9,7 @@
 <body>
     <nav class="navbar">
         <div class="nav-links">
-            <a th:href="@{index.html}" class="nav-link">Home</a>
+            <a th:href="@{/}" class="nav-link">Home</a>
             <a th:href="@{/Belanja}" class="nav-link active">Belanja</a>
         </div>
         <div class="nav-right">
@@ -19,7 +19,7 @@
             <div class="profile-dropdown">
                 <button onclick="toggleProfileMenu()" class="profile-btn">👤 Profile</button>
                 <div id="profileDropdown" class="dropdown-content">
-                    <span id="profileEmail"> Email User</span> 
+                    <p th:text="${session.user.getEmail()}" ></p> 
                     <a th:href="@{/BuyerHistory}">Riwayat Pembelian</a>
                     <a th:href="@{/Logout}">Keluar</a>
                 </div>

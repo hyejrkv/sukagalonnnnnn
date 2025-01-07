@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+/*document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('registrationForm');
     const modal = document.getElementById('successModal');
 
@@ -27,40 +27,33 @@ document.addEventListener('DOMContentLoaded', function() {
             alert('Password dan konfirmasi password tidak cocok!');
             return;
         }
+        // Kirim data ke server
+        try {
+            const response = await fetch('/Daftar', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams({
+                    email: email,
+                    password: password,
+                    confirmPassword: confirmPassword
+                }).toString(),
+            });
 
-        // Contoh daftar email yang sudah terdaftar (hapus ini jika menggunakan database)
-        const registeredEmails = ['test@example.com', 'user@example.com'];
+            const data = await response.json();
 
-        if (registeredEmails.includes(email)) {
-            document.getElementById('emailError').style.display = 'block';
-        } else {
-            document.getElementById('emailError').style.display = 'none';
-
-            try {
-                // Kirim data ke server
-                const response = await fetch('YOUR_SERVER_ENDPOINT_HERE', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        email: email,
-                        password: password
-                    })
-                });
-
-                if (response.ok) {
-                    // Tampilkan modal sukses jika pendaftaran berhasil
-                    showSuccessModal();
-                    form.reset();
-                } else {
-                    const error = await response.json();
-                    alert('Gagal mendaftarkan user: ' + error.message);
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                alert('Terjadi kesalahan saat menghubungi server.');
+            if (response.ok) {
+                // Jika pendaftaran berhasil, tampilkan modal
+                showSuccessModal();
+            } else {
+                // Jika ada kesalahan, tampilkan pesan kesalahan
+                //const errorData = await response.json();
+                alert(errorData.message || 'Terjadi kesalahan saat mendaftar.');
             }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Terjadi kesalahan saat menghubungi server.');
         }
     });
 
@@ -70,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Redirect ke halaman login setelah 2 detik
         setTimeout(function() {
-            window.location.href = 'SG_LOGIN.html';
+            window.location.href = '/Login';
         }, 2000);
     }
 
@@ -81,3 +74,5 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 });
+
+*/

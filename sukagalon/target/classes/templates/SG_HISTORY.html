@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riwayat Pembelian</title>
+    <link rel="stylesheet" th:href="@{/SG_HISTORY.css}">
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <div class="nav-links">
+                <a th:href="@{/}" class="nav-link">Home</a>
+                <a th:href="@{/Belanja}" class="nav-link active">Belanja</a>
+            </div>
+            <div class="nav-right">
+                <div class="profile-dropdown">
+                    <button onclick="toggleProfileMenu()" class="profile-btn">👤 Profile</button>
+                    <div id="profileDropdown" class="dropdown-content">
+                        <p th:text="${session.user.getEmail()}" ></p> 
+                        <a th:href="@{/BuyerHistory}">Riwayat Pembelian</a>
+                        <a th:href="@{/Logout}">Keluar</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Page Content -->
+        <div class="history-container">
+            <h1>Riwayat Pembelian</h1>
+            <table class="history-table">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Nama Produk</th>
+                        <th>Tanggal Pembelian</th>
+                        <th>Harga</th>
+                        <th>Status Pembayaran</th>
+                    </tr>
+                </thead>
+                <tbody id="historyTableBody">
+                    <tr>
+                        <td colspan="5" class="no-transactions">Belum ada transaksi apapun</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script th:src="@{/SG_HISTORY.js}"></script>
+</body>
+</html>

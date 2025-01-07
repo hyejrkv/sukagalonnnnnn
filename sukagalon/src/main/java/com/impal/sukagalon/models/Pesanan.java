@@ -14,7 +14,7 @@ public class Pesanan {
     private int id;
     
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "id_user", nullable = true)
     private User user;
     
     @Column(nullable = false)
