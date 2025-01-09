@@ -24,6 +24,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.impal.sukagalon.models.User;
 import com.impal.sukagalon.services.UserService;
 
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 
@@ -89,9 +91,14 @@ public class AuthController {
     }
 
     @GetMapping("/Logout")
-    public String logout(HttpSession session) {
+    public String logout(HttpSession session, HttpServletResponse response) {
         session.invalidate();
         SecurityContextHolder.clearContext();
+        // Clear the "Remember Me" cookie
+        Cookie cookie = new Cookie("rememberMe", null);
+        cookie.setMaxAge(0); // Expire the cookie
+        cookie.setHttpOnly(true);
+        response.addCookie(cookie);
         return "redirect:/";
     }
 }

@@ -37,6 +37,9 @@
                 <a 
                 th:if="${session.user!=null && session.user.getRole().equals('BUYER')}"
                 th:href="@{/Belanja}" class="explore-btn">Belanja</a>
+                <a 
+                th:if="${session.user!=null && session.user.getRole().equals('ADMIN')}"
+                th:href="@{/Dashboard}" class="explore-btn">Dashboard</a>
             </div>
 
             <div class="hero-image">

@@ -25,8 +25,8 @@ public class BuyerHistoryController {
     @GetMapping("")
     public String landBuyerHist(Model model, HttpSession session){
         User currentUser = (User) session.getAttribute("user");
-        if (currentUser==null) {
-            return "SG_HISTORY";
+        if (currentUser == null || !"BUYER".equals(currentUser.getRole())) {
+            return "/accessDenied";
         }
         model.addAttribute("history", pesananService.getPesananByUserId(currentUser.getIdUser()));
         return "SG_HISTORY";

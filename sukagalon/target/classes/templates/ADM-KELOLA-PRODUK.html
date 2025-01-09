@@ -10,13 +10,13 @@
     <div class="dashboard">
         <aside class="sidebar">
             <div class="logo">
-                <img th:src="@{koko.png}" alt="SukaGalon Logo">
+                <img th:src="@{/koko.png}" alt="SukaGalon Logo">
                 <h2>SukaGalon</h2>
             </div>
             <nav class="menu">
                 <ul>
                     <a th:href="@{/AdminHistory}">Kelola Riwayat Pemesanan Pembeli</a>
-                    <a th:href="@{/AdminProduk}">Kelola Stok</a>
+                    <a th:href="@{/AdminProduk}">Kelola Produk</a>
                 </ul>
             </nav>
         </aside>
@@ -92,6 +92,6 @@
         </div>
     </div>
 
-    <script th:src="@{ADM-KELOLA-PRODUK.js}"></script>
+    <script th:src="@{/ADM-KELOLA-PRODUK.js}"></script>
 </body>
 </html>

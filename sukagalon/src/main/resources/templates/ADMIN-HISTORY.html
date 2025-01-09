@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kelola Riwayat Pemesanan Pembeli</title>
-    <link rel="stylesheet" th:href="@{ADMIN-HISTORY.css}">
+    <link rel="stylesheet" th:href="@{/ADMIN-HISTORY.css}">
 </head>
 <body>
     <div class="dashboard">
         <aside class="sidebar">
             <div class="logo">
-                <img th:src="@{koko.png}" alt="SukaGalon Logo">
+                <img th:src="@{/koko.png}" alt="SukaGalon Logo">
                 <h2>SukaGalon</h2>
             </div>
             <nav class="menu">
@@ -51,7 +51,7 @@
                                 <td th:text="${m.idUser}"></td>
                                 <td th:text="${m.email}"></td>
                                 <td>
-                                    <a class="profile-btn" th:href="@{/}">Lihat Pesanan</a>
+                                    <a class="profile-btn" th:href="@{/AdminHistory/filterPesanan(idUser=${m.idUser})}">Lihat Pesanan</a>
                                     
                                 </td>
                             </tr>
@@ -67,6 +67,7 @@
                         <thead>
                             <tr>
                                 <th>ID Pesanan</th>
+                                <th>Email User</th>
                                 <th>Tanggal</th>
                                 <!--<th>Produk</th>-->
                                 <!--<th>Jumlah</th>-->
@@ -78,11 +79,12 @@
                         <tbody id="orderTableBody">
                             <tr th:each="p : ${pesananList}">
                                 <td th:text="${p.id}"></td>
+                                <td th:text="${p.user.getEmail()}"></td>
                                 <td th:text="${#temporals.format(p.tanggalPesanan, 'dd-MM-yyyy HH:mm')}"></td>
                                 <td th:text="${p.totalHarga}"></td>
                                 <td th:text="${p.status}"></td>
                                 <td>
-                                    <a class="profile-btn" th:href="@{/}">Edit</a>
+                                    <a class="profile-btn" th:href="@{/AdminHistory/edit(id=${p.id})}">Edit</a>
                                     
                                 </td>
                             </tr>
@@ -127,6 +129,6 @@
             </section>
         </div>
     </div>
-    <script th:src="@{ADMIN-HISTORY.js}"></script>
+    <script th:src="@{/ADMIN-HISTORY.js}"></script>
 </body>
 </html>

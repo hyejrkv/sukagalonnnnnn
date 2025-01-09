@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - SukaGalon</title>
+    <link rel="stylesheet" th:href="@{/SG_LOGIN.css}"> 
+</head>
+<body>
+    <div class="container">
+        <div class="login-card">
+            <div class="mascot">
+                <img th:src="@{/koko.png}" alt="Mascot" class="mascot-image left">
+                <h1>Edit Status</h1>
+                <img th:src="@{/koko.png}" alt="Mascot" class="mascot-image right">
+            </div>
+            <p class="register-text">
+                <a th:href="@{/AdminHistory}" class="register-link" style="color: red;">Kembali</a>
+            </p>
+            <form th:action="@{${pesanan.id==0 ? '/AdminHistory/store' : '/AdminHistory/update'}}" th:object="${pesanan}"
+                method="post">
+                
+                <div class="form-group">
+                    <label for="harga">Email user</label>
+                    <p 
+                        th:text="${pesanan.user.getEmail()}"
+                        class="form-input"
+                    >
+                    </p>
+                </div>
+
+                <div class="form-group">
+                    <label for="harga">Total Harga</label>
+                    <p 
+                        th:text="${pesanan.totalHarga}"
+                        class="form-input"
+                    >
+                    </p>
+                </div>
+
+                <div class="form-group">
+                    <label for="status">Status</label>
+                    <input 
+                        th:field="*{status}"
+                        type="text" 
+                        id="status" 
+                        name="status" 
+                        required
+                        placeholder="Status"
+                        class="form-input"
+                    >
+                </div>
+
+                <!--<div class="form-group checkbox">
+                    <input type="checkbox" id="remember" name="remember">
+                    <label for="remember">Ingat Saya</label>
+                </div>-->
+                
+                <button type="submit" class="login-btn">Submit</button>
+
+            </form>
+
+            <!--<p class="forgot-password-text">
+                <a th:href="@{/Reset}" onclick="showResetPasswordForm()">Lupa Password?</a>
+            </p>-->
+        </div>
+    </div>
+
+    <!-- Reset Password Form Modal --><!--
+    <div id="resetPasswordModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <h2>Reset Password</h2>
+            <form id="resetPasswordForm" onsubmit="handleResetPassword(event)">
+                <div class="form-group">
+                    <label for="resetEmail">Email</label>
+                    <input 
+                        type="email" 
+                        id="resetEmail" 
+                        name="resetEmail" 
+                        required
+                        placeholder="Enter your email"
+                        class="form-input"
+                    >
+                </div>
+                <button type="submit" class="reset-btn">Send Reset Link</button>
+                <button type="button" class="close-btn" onclick="closeResetPasswordForm()">Cancel</button>
+            </form>
+        </div>
+    </div>
+-->
+    <!-- Alert Modal -->
+    <div id="alertModal" class="modal">
+        <div class="modal-content">
+            <h2>This page says</h2>
+            <p id="modalMessage">Login berhasil!</p>
+            <button onclick="closeModal()" class="modal-btn">OK</button>
+        </div>
+    </div>
+
+    <script th:src="@{/SG_LOGIN.js}"></script>
+</body>
+</html>

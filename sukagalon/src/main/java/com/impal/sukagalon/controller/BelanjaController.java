@@ -6,8 +6,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.impal.sukagalon.models.User;
 //import com.impal.sukagalon.services.PesananService;
 import com.impal.sukagalon.services.ProdukService;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/Belanja")
@@ -17,7 +20,12 @@ public class BelanjaController {
     private ProdukService produkService;
 
     @GetMapping("")
-    public String getStok(Model model){
+    public String getStok(Model model, HttpSession session){
+        User currentUser = (User) session.getAttribute("user");
+        if (currentUser == null || !"BUYER".equals(currentUser.getRole())) {
+            return "/accessDenied";
+        }
+        
         model.addAttribute("stok1", produkService.getStokByID(1));
         model.addAttribute("stok2", produkService.getStokByID(2));
         model.addAttribute("stok3", produkService.getStokByID(3));

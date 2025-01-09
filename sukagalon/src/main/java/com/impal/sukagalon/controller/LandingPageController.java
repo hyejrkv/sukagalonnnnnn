@@ -3,6 +3,10 @@ package com.impal.sukagalon.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.impal.sukagalon.models.User;
+
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 public class LandingPageController {
 
@@ -22,7 +26,11 @@ public class LandingPageController {
     }
 
     @GetMapping("/Dashboard")
-    public String dashboardadmin(){
+    public String dashboardadmin(HttpSession session){
+        User currentUser = (User) session.getAttribute("user");
+        if (currentUser==null || !"ADMIN".equals(currentUser.getRole())){
+            return "redirect:/accessDenied";
+        }
         return "ADMIN-DASHBOARD";
     }
 }
