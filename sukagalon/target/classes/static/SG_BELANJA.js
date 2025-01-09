@@ -1,10 +1,10 @@
 let cart = [];
-
+const productData = document.getElementById('product-data');
 // Data produk termasuk stok
 const products = [
-    { name: 'Le Minerale 15L', price: 22000, image: 'le minerale.jpeg', stock: 10 },
+    { name: 'Le Minerale 15L', price: 22000, image: 'le minerale.jpeg', stock: 10},
     { name: 'Le Minerale 5L', price: 15000, image: 'le minerale 5l.jpg', stock: 8 },
-    { name: 'Cleo - 19L', price: 34000, image: 'CLEO.jpeg', stock: 5 },
+    { name: 'Cleo 19L', price: 34000, image: 'CLEO.jpeg', stock: 5 },
     { name: 'Cleo 6L', price: 19000, image: 'cleo MINI.png', stock: 12 },
     { name: 'Crystalline 6L', price: 14000, image: 'Cryst.jpg', stock: 15 },
     { name: 'Crystalline 19L', price: 58000, image: 'cryst 19l.jpg', stock: 3 }
@@ -61,7 +61,7 @@ function removeFromCart(index) {
     updateCartDisplay();
     
     // Show notification
-    showNotification(`${item.name} dihapus dari keranjang`);
+    alert(`${item.name} dihapus dari keranjang`);
 }
 
 function updateQuantity(index, change) {
@@ -123,7 +123,7 @@ function checkout() {
     const phoneNumber = "+6281585813432"; // Nomor WhatsApp tujuan
 
     // Membentuk pesan berdasarkan keranjang
-    let message = `Halo, saya ingin memesan galon:\nNama: \nAlamat Pengiriman:\n\n`;
+    let message = `Halo, saya ingin memesan galon:\nEmail: \n\n`;
     let totalPrice = 0;
 
     cart.forEach((item) => {
@@ -131,7 +131,7 @@ function checkout() {
         totalPrice += item.price * item.quantity;
     });
 
-    message += `\nTotal Harga: Rp${totalPrice.toLocaleString()}\n\nSilakan proses pesanan saya.`;
+    message += `\nTotal Harga: Rp${totalPrice.toLocaleString()}\n\nTolong proses pesanan saya.`;
 
     // Encode pesan dan buat link WhatsApp
     const encodedMessage = encodeURIComponent(message);

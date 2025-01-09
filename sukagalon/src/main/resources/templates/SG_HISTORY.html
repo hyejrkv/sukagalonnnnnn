@@ -32,15 +32,21 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Nama Produk</th>
+                        <!--<th>Nama Produk</th>-->
                         <th>Tanggal Pembelian</th>
                         <th>Harga</th>
                         <th>Status Pembayaran</th>
                     </tr>
                 </thead>
                 <tbody id="historyTableBody">
-                    <tr>
-                        <td colspan="5" class="no-transactions">Belum ada transaksi apapun</td>
+                    <tr th:each="p: ${history}">
+                        <!--<td 
+                        th:if="{}"
+                        colspan="5" class="no-transactions">Belum ada transaksi apapun</td>-->
+                        <td th:text="${p.id}"></td>
+                        <td th:text="${#temporals.format(p.tanggalPesanan, 'dd-MM-yyyy HH:mm')}"></td>
+                        <td th:text="${p.totalHarga}"></td>
+                        <td th:text="${p.status}"></td>
                     </tr>
                 </tbody>
             </table>

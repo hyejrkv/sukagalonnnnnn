@@ -1,11 +1,11 @@
 package com.impal.sukagalon.controller;
 
-import java.util.Map;
+//import java.util.Map;
 
 //import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+//import org.springframework.http.ResponseEntity;
 //import org.springframework.security.authentication.AuthenticationManager;
 //import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 //import org.springframework.security.core.Authentication;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+//import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.impal.sukagalon.models.User;
@@ -38,47 +38,7 @@ public class AuthController {
         model.addAttribute("user", new User());
         return "SG_DAFTAR";
     }
-/* 
-    @PostMapping("/Daftar")
-    @ResponseBody
-    public ResponseEntity<?> registerUser(@RequestParam String email, 
-                                        @RequestParam String password,
-                                        @RequestParam(required = false) String confirmPassword) {
-        try {
-            // Create new user object
-            User user = new User();
-            user.setEmail(email);
-            user.setPassword(password);
-            user.setRole("BUYER");
 
-            // Basic validation
-            if (password.length() < 6) {
-                return ResponseEntity.badRequest()
-                    .body(Map.of("message", "Password harus minimal 6 karakter!"));
-            }
-
-            if (confirmPassword != null && !password.equals(confirmPassword)) {
-                return ResponseEntity.badRequest()
-                    .body(Map.of("message", "Password dan konfirmasi password tidak cocok!"));
-            }
-
-            // Attempt to register
-            userService.registerUser(user);
-            
-            // Return success response
-            return ResponseEntity.ok()
-                .body(Map.of("message", "Pendaftaran berhasil!"));
-
-        } catch (RuntimeException e) {
-            // Handle specific exceptions
-            return ResponseEntity.badRequest()
-                .body(Map.of("message", e.getMessage()));
-        } catch (Exception e) {
-            // Handle unexpected errors
-            return ResponseEntity.internalServerError()
-                .body(Map.of("message", "Terjadi kesalahan saat mendaftar."));
-        }
-    }*/
     @PostMapping("/Daftar")
     public String registerUser(@ModelAttribute User user, RedirectAttributes redirectAttributes,
                                 @RequestParam String email, 

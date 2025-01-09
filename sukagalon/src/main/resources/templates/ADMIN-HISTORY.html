@@ -51,7 +51,7 @@
                                 <td th:text="${m.idUser}"></td>
                                 <td th:text="${m.email}"></td>
                                 <td>
-                                    <a class="profile-btn" th:href="@{/mobil/edit(id=${m.idUser})}">Edit</a>
+                                    <a class="profile-btn" th:href="@{/}">Lihat Pesanan</a>
                                     
                                 </td>
                             </tr>
@@ -68,14 +68,24 @@
                             <tr>
                                 <th>ID Pesanan</th>
                                 <th>Tanggal</th>
-                                <th>Produk</th>
-                                <th>Jumlah</th>
+                                <!--<th>Produk</th>-->
+                                <!--<th>Jumlah</th>-->
                                 <th>Total</th>
                                 <th>Status</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody id="orderTableBody">
+                            <tr th:each="p : ${pesananList}">
+                                <td th:text="${p.id}"></td>
+                                <td th:text="${#temporals.format(p.tanggalPesanan, 'dd-MM-yyyy HH:mm')}"></td>
+                                <td th:text="${p.totalHarga}"></td>
+                                <td th:text="${p.status}"></td>
+                                <td>
+                                    <a class="profile-btn" th:href="@{/}">Edit</a>
+                                    
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
