@@ -9,8 +9,13 @@ public class Produk {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idProduk;
     
+    @Column(nullable = false)
     private String merk;
+
+    @Column(nullable = false)
     private Double harga;
+
+    @Column(nullable = false)
     private int stok;
     
     public Produk() {
@@ -24,7 +29,7 @@ public class Produk {
     public int getIdProduk() {
         return idProduk;
     }
-    public void setIdPesanan(int idProduk) {
+    public void setIdProduk(int idProduk) {
         this.idProduk = idProduk;
     }
     public String getMerk() {

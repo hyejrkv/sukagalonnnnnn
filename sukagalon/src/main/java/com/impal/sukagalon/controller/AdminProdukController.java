@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import com.impal.sukagalon.models.Pesanan;
 import com.impal.sukagalon.models.Produk;
 import com.impal.sukagalon.models.User;
 import com.impal.sukagalon.services.ProdukService;
@@ -56,6 +57,9 @@ public class AdminProdukController {
         if (currentUser !=null && !"ADMIN".equalsIgnoreCase(currentUser.getRole())) {
             return "redirect:/accessDenied";
         }
+        Produk existingProduk = produkService.getProdukById(produk.getIdProduk()).orElseThrow();
+        produk.setHarga(existingProduk.getHarga());
+        produk.setMerk(existingProduk.getMerk());
         produkService.saveProduk(produk);
         return "redirect:/AdminProduk";
         
