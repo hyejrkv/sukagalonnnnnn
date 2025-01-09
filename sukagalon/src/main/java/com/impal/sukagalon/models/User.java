@@ -18,9 +18,6 @@ public class User {
     @Column(nullable = false)
     private String role;
 
-
-
-    // Getters and Setters
     public int getIdUser() {
         return idUser;
     }

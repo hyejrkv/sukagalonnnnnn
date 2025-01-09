@@ -3,6 +3,7 @@ package com.impal.sukagalon.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.impal.sukagalon.models.Pesanan;
 import com.impal.sukagalon.models.Produk;
 import com.impal.sukagalon.repositories.ProdukRepository;
 
@@ -15,7 +16,7 @@ public class ProdukService {
     @Autowired
     private ProdukRepository produkRepository;
 
-    public Produk updateStok(int idProduk, int jumlahStokBaru) {
+    /*public Produk updateStok(int idProduk, int jumlahStokBaru) {
         Optional<Produk> produkOpt = produkRepository.findById(idProduk);
         if (produkOpt.isPresent()) {
             Produk produk = produkOpt.get();
@@ -24,7 +25,7 @@ public class ProdukService {
         } else {
             throw new RuntimeException("Produk dengan ID " + idProduk + " tidak ditemukan.");
         }
-    }
+    }*/
 
     public List<Produk> getAllProduk() {
         return produkRepository.findAll();
@@ -37,5 +38,17 @@ public class ProdukService {
         } else {
             throw new RuntimeException("Produk dengan ID " + idProduk + " tidak ditemukan.");
         }
+    }
+
+    public Optional<Produk> getProdukById(int id){
+        return produkRepository.findById(id);
+    }
+
+    public void saveProduk(Produk produk) {
+        produkRepository.save(produk);
+    }
+
+    public void deleteProduk(int id) {
+        produkRepository.deleteById(id);
     }
 }

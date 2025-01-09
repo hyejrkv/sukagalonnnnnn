@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - SukaGalon</title>
+    <title>Edik Status</title>
     <link rel="stylesheet" th:href="@{/SG_LOGIN.css}"> 
 </head>
 <body>
@@ -20,6 +20,18 @@
             <form th:action="@{${pesanan.id==0 ? '/AdminHistory/store' : '/AdminHistory/update'}}" th:object="${pesanan}"
                 method="post">
                 
+                <!-- Hidden ID field for editing -->
+                <input type="hidden" th:field="*{id}">
+
+                <div class="form-group">
+                    <label for="harga">Nama Produk</label>
+                    <p 
+                        th:text="${pesanan.id}"
+                        class="form-input"
+                    >
+                    </p>
+                </div>
+
                 <div class="form-group">
                     <label for="harga">Email user</label>
                     <p 

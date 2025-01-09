@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - SukaGalon</title>
+    <title>Edit Produk</title>
     <link rel="stylesheet" th:href="@{/SG_LOGIN.css}"> 
 </head>
 <body>
@@ -11,49 +11,72 @@
         <div class="login-card">
             <div class="mascot">
                 <img th:src="@{/koko.png}" alt="Mascot" class="mascot-image left">
-                <h1>Login Akun</h1>
+                <h1>Edit Produk</h1>
                 <img th:src="@{/koko.png}" alt="Mascot" class="mascot-image right">
             </div>
             <p class="register-text">
-                Belum punya akun SukaGalon? 
-                <a th:href="@{/Daftar}" class="register-link">Daftar</a>
+                <a th:href="@{/AdminProduk}" class="register-link" style="color: red;">Kembali</a>
             </p>
-            <form th:action="@{/Login}" method="post">
+            <form th:action="@{${produk.idProduk==0 ? '/AdminProduk/store' : '/AdminProduk/update'}}" th:object="${produk}"
+                method="post">
                 
+                <!-- Hidden ID field for editing -->
+                <input type="hidden" th:field="*{idProduk}">
+
                 <div class="form-group">
-                    <label for="email">Email</label>
+                    <label for="harga">ID Produk</label>
+                    <p 
+                        th:text="${produk.idProduk}"
+                        class="form-input"
+                    >
+                    </p>
+                </div>
+
+                <div class="form-group">
+                    <label for="harga">Nama Produk</label>
                     <input 
-                        type="email" 
-                        id="email" 
-                        name="email" 
+                        th:field="*{merk}"
+                        type="text" 
+                        id="merk" 
+                        name="merk" 
                         required
-                        placeholder="Email"
+                        placeholder="Nama Produk"
                         class="form-input"
                     >
                 </div>
-                
+
                 <div class="form-group">
-                    <label for="password">Password</label>
-                    <div class="password-input">
-                        <input 
-                            type="password" 
-                            id="password" 
-                            name="password" 
-                            required
-                            placeholder="Password"
-                            class="form-input"
-                        >
-                    </div>
+                    <label for="harga">Harga Produk</label>
+                    <input 
+                        th:field="*{harga}"
+                        type="number" 
+                        id="harga" 
+                        name="harga" 
+                        required
+                        placeholder="Harga Produk"
+                        class="form-input"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="stok">Stok</label>
+                    <input 
+                        th:field="*{stok}"
+                        type="number" 
+                        id="stok" 
+                        name="stok" 
+                        required
+                        placeholder="Stok"
+                        class="form-input"
+                    >
                 </div>
 
                 <!--<div class="form-group checkbox">
                     <input type="checkbox" id="remember" name="remember">
                     <label for="remember">Ingat Saya</label>
                 </div>-->
-                <div th:if="${message}" style="text-align: center; color: green; padding: 2mm;" th:text="${message}"></div>
-
-                <div th:if="${error}" style="text-align: center; color: red;padding: 2mm;" th:text="${error}"></div>
-                <button type="submit" class="login-btn">Login</button>
+                
+                <button type="submit" class="login-btn">Submit</button>
 
             </form>
 

@@ -55,27 +55,37 @@ public class AdmHistoryController {
 
     @GetMapping("/edit")
     public String edit(@RequestParam int id, Model model, HttpSession session) {
-        
+        User currentUser = (User) session.getAttribute("user");
+        if (currentUser !=null && !"ADMIN".equalsIgnoreCase(currentUser.getRole())) {
+            return "redirect:/accessDenied";
+        }
         model.addAttribute("pesanan", pesananService.getPesananById(id).orElseThrow());
         return "FORM-STATUS";
     }
 
     @PostMapping("/store")
     public String store(@ModelAttribute Pesanan pesanan, HttpSession session) {
-        
+        User currentUser = (User) session.getAttribute("user");
+        if (currentUser !=null && !"ADMIN".equalsIgnoreCase(currentUser.getRole())) {
+            return "redirect:/accessDenied";
+        }
         pesananService.savePesanan(pesanan);
         return "redirect:/AdminHistory";
     }
 
     @PostMapping("/update")
     public String update(@ModelAttribute Pesanan pesanan, HttpSession session) {
-        
-        Pesanan existingPenjualan = pesananService.getPesananById(pesanan.getId()).orElseThrow();
-        pesanan.setTotalHarga(existingPenjualan.getTotalHarga());
-        pesanan.setTanggalPesanan(existingPenjualan.getTanggalPesanan());
-        pesanan.setUser(existingPenjualan.getUser());
-        pesanan.setPesananDetails(existingPenjualan.getPesananDetails());
+        User currentUser = (User) session.getAttribute("user");
+        if (currentUser !=null && !"ADMIN".equalsIgnoreCase(currentUser.getRole())) {
+            return "redirect:/accessDenied";
+        }
+        Pesanan existingPesanan = pesananService.getPesananById(pesanan.getId()).orElseThrow();
+        pesanan.setTotalHarga(existingPesanan.getTotalHarga());
+        pesanan.setTanggalPesanan(existingPesanan.getTanggalPesanan());
+        pesanan.setUser(existingPesanan.getUser());
+        pesanan.setPesananDetails(existingPesanan.getPesananDetails());
         pesananService.savePesanan(pesanan);
         return "redirect:/AdminHistory";
+        
     }
 }

@@ -30,10 +30,35 @@ public class AdminProdukController {
         return "ADM-KELOLA-PRODUK";
     }
 
-    @PutMapping("/{id}/stok")
-    public Produk updateStok(@PathVariable("id") int idProduk, @RequestParam("stok") int jumlahStokBaru, HttpSession session) {
+    @GetMapping("/edit")
+    public String edit(@RequestParam int idProduk, Model model, HttpSession session) {
+        User currentUser = (User) session.getAttribute("user");
+        if (currentUser !=null && !"ADMIN".equalsIgnoreCase(currentUser.getRole())) {
+            return "redirect:/accessDenied";
+        }
+        model.addAttribute("produk", produkService.getProdukById(idProduk).orElseThrow());
+        return "FORM-STOK";
+    }
 
-        return produkService.updateStok(idProduk, jumlahStokBaru);
+    @PostMapping("/store")
+    public String store(@ModelAttribute Produk produk, HttpSession session) {
+        User currentUser = (User) session.getAttribute("user");
+        if (currentUser !=null && !"ADMIN".equalsIgnoreCase(currentUser.getRole())) {
+            return "redirect:/accessDenied";
+        }
+        produkService.saveProduk(produk);
+        return "redirect:/AdminProduk";
+    }
+
+    @PostMapping("/update")
+    public String update(@ModelAttribute Produk produk, HttpSession session) {
+        User currentUser = (User) session.getAttribute("user");
+        if (currentUser !=null && !"ADMIN".equalsIgnoreCase(currentUser.getRole())) {
+            return "redirect:/accessDenied";
+        }
+        produkService.saveProduk(produk);
+        return "redirect:/AdminProduk";
+        
     }
 }
 
