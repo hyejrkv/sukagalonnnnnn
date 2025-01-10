@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.impal.sukagalon.models.User;
 import com.impal.sukagalon.services.PesananService;
-import com.impal.sukagalon.services.ProdukService;
+//import com.impal.sukagalon.services.ProdukService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -19,8 +19,8 @@ public class BuyerHistoryController {
     @Autowired
     private PesananService pesananService;
 
-    @Autowired
-    private ProdukService produkService;
+    //@Autowired
+    //private ProdukService produkService;
 
     @GetMapping("")
     public String landBuyerHist(Model model, HttpSession session){

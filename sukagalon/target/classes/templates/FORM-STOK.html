@@ -62,7 +62,8 @@
                         class="form-input"
                     >
                 </div>
-                
+                <div><p th:if="${error}" style="text-align: center; color: red; padding: 2mm;" th:text="${error}"></p></div>
+
                 <button type="submit" class="login-btn">Submit</button>
 
             </form>

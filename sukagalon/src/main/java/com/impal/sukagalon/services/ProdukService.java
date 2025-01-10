@@ -3,7 +3,7 @@ package com.impal.sukagalon.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.impal.sukagalon.models.Pesanan;
+//import com.impal.sukagalon.models.Pesanan;
 import com.impal.sukagalon.models.Produk;
 import com.impal.sukagalon.repositories.ProdukRepository;
 
@@ -51,4 +51,9 @@ public class ProdukService {
     public void deleteProduk(int id) {
         produkRepository.deleteById(id);
     }
+
+    public Produk findByMerk(String merk){
+        return produkRepository.findByMerk(merk);
+    }
+
 }

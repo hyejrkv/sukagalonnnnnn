@@ -17,7 +17,7 @@
             <p class="register-text">
                 <a th:href="@{/AdminHistory}" class="register-link" style="color: red;">Kembali</a>
             </p>
-            <form th:action="@{${pesanan.id==0 ? '/AdminHistory/store' : '/AdminHistory/update'}}" th:object="${pesanan}"
+            <form th:action="@{/AdminHistory/add}"
                 method="post">
                 
                 <!-- Hidden ID field for editing -->
@@ -33,17 +33,21 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="harga">User</label>
-                    <select
-                        th:field="*{user}"
-                        id="email" 
-                        name="email" 
-                        required
-                        placeholder="Email"
-                        class="form-input">
-                        <option value="">Pilih User</option>
-                        <option th:each="u: ${user}" th:value="${u.idUser}" th:text="${u.email}"></option>
-                    </select>
+                    <label for="harga">Email user</label>
+                    <p 
+                        th:text="${pesanan.user.getEmail()}"
+                        class="form-input"
+                    >
+                    </p>
+                </div>
+
+                <div class="form-group">
+                    <label for="harga">Total Harga</label>
+                    <p 
+                        th:text="${pesanan.totalHarga}"
+                        class="form-input"
+                    >
+                    </p>
                 </div>
 
                 <div class="form-group">
@@ -58,6 +62,11 @@
                         class="form-input"
                     >
                 </div>
+
+                <!--<div class="form-group checkbox">
+                    <input type="checkbox" id="remember" name="remember">
+                    <label for="remember">Ingat Saya</label>
+                </div>-->
                 
                 <button type="submit" class="login-btn">Submit</button>
 

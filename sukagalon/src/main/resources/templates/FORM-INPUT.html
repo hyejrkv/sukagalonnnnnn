@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edik Status</title>
+    <link rel="stylesheet" th:href="@{/SG_LOGIN.css}"> 
+</head>
+<body>
+    <div class="container">
+        <div class="login-card">
+            <div class="mascot">
+                <img th:src="@{/koko.png}" alt="Mascot" class="mascot-image left">
+                <h1>Add Pesanan</h1>
+                <img th:src="@{/koko.png}" alt="Mascot" class="mascot-image right">
+            </div>
+            <p class="register-text">
+                <a th:href="@{/AdminHistory}" class="register-link" style="color: red;">Kembali</a>
+            </p>
+            <form th:action="@{/AdminHistory/store}" th:object="${pesananForm}"
+                method="post">
+                
+                
+                <input type="hidden" th:field="*{id}">
+                <div class="form-group">
+                    <label for="harga">User</label>
+                    <select
+                        th:field="*{user}"
+                        id="email" 
+                        name="email" 
+                        required
+                        placeholder="Email"
+                        class="form-input">
+                        <option value="">Pilih User</option>
+                        <option th:each="u: ${user}" th:value="${u.idUser}" th:text="${u.email}"></option>
+                    </select>
+                </div>
+                <div id="pesananDetails">
+                    <div th:each="detail, stat : *{pesananDetails}" class="pesanan-detail-item">
+                        <div class="form-group">
+                            <label th:text="'Produk ' + ${stat.count}"></label>
+                            <select th:field="*{pesananDetails[__${stat.index}__].produkId}" required class="form-input">
+                                <option value="">Pilih Produk</option>
+                                <option th:each="produk: ${produkList}" 
+                                        th:value="${produk.idProduk}" 
+                                        th:text="${produk.merk}">
+                                </option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label th:text="'Kuantitas ' + ${stat.count}"></label>
+                            <input th:field="*{pesananDetails[__${stat.index}__].kuantitas}" 
+                                   type="number" min="1" required class="form-input">
+                        </div>
+                        
+                        <button type="button" class="btn-remove" 
+                                th:onclick="'removePesananDetail(' + ${stat.index} + ')'">
+                            Hapus
+                        </button>
+                        
+                    </div>
+                    <button type="button" onclick="addPesananDetail()" class="btn-add">
+                        Tambah Produk
+                    </button>
+                </div>
+
+                <div class="form-group">
+                    <label for="status">Status</label>
+                    <input 
+                        th:field="*{status}"
+                        type="text" 
+                        id="status" 
+                        name="status" 
+                        required
+                        placeholder="Status"
+                        class="form-input"
+                    >
+                </div>
+                
+                <button type="submit" class="login-btn">Submit</button>
+            
+            </form>
+
+            
+        </div>
+    </div>
+
+    <script th:src="@{/SG_LOGIN.js}"></script>
+    <script th:inline="javascript">
+        let detailCount = /*[[${pesananForm.pesananDetails.size()}]]*/ 0;
+        const produkList = /*[[${produkList}]]*/ [];
+        
+        function addPesananDetail() {
+            const container = document.getElementById('pesananDetails');
+            const newDetail = document.createElement('div');
+            newDetail.className = 'pesanan-detail-item';
+            
+            newDetail.innerHTML = `
+                <div class="form-group">
+                    
+                    <select name="pesananDetails[${detailCount}].produkId" required class="form-input">
+                        <option value="">Pilih Produk</option>
+                        ${produkList.map(produk => 
+                            `<option value="${produk.idProduk}">${produk.merk} - Rp${produk.harga}</option>`
+                        ).join('')}
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Kuantitas</label>
+                    <input name="pesananDetails[${detailCount}].kuantitas" 
+                           type="number" min="1" required class="form-input">
+                </div>
+                
+                <button type="button" class="btn-remove" 
+                        onclick="removePesananDetail(${detailCount})">
+                    Hapus
+                </button>
+                
+            `;
+            
+            container.appendChild(newDetail);
+            detailCount++;
+        }
+        
+        function removePesananDetail(index) {
+            const container = document.getElementById('pesananDetails');
+            container.children[index].remove();
+            // Reorder remaining inputs
+            updateIndexes();
+        }
+        
+        function updateIndexes() {
+            const details = document.getElementsByClassName('pesanan-detail-item');
+            Array.from(details).forEach((detail, index) => {
+                const inputs = detail.querySelectorAll('select, input');
+                inputs.forEach(input => {
+                    input.name = input.name.replace(/\[\d+\]/, `[${index}]`);
+                });
+                detail.querySelector('label').textContent = `Produk ${index + 1}`;
+            });
+            detailCount = details.length;
+        }
+    </script>
+</body>
+</html>

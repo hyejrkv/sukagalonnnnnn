@@ -34,8 +34,8 @@ public class Pesanan {
     public void addPesananDetail(PesananDetail detail) {
         pesananDetails.add(detail);
         detail.setPesanan(this);
-        detail.calculateStok();
-        calculateTotal();
+        //detail.calculateStok();
+        //calculateTotal();
     }
     
     public void removePesananDetail(PesananDetail detail) {

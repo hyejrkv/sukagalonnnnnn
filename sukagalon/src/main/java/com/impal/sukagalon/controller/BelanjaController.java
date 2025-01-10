@@ -23,7 +23,7 @@ public class BelanjaController {
     public String getStok(Model model, HttpSession session){
         User currentUser = (User) session.getAttribute("user");
         if (currentUser == null || !"BUYER".equals(currentUser.getRole())) {
-            return "/accessDenied";
+            return "redirect:/accessDenied";
         }
         
         model.addAttribute("stok1", produkService.getStokByID(1));
@@ -36,6 +36,6 @@ public class BelanjaController {
         return "SG_BELANJA";
     }
 
-
+    
 }
 

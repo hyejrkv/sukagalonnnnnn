@@ -51,7 +51,9 @@
                                 <td th:text="${m.idUser}"></td>
                                 <td th:text="${m.email}"></td>
                                 <td>
-                                    <a class="profile-btn" th:href="@{/AdminHistory/filterPesanan(idUser=${m.idUser})}">Lihat Pesanan</a>
+                                    <a class="btn btn-primary" style="background-color: green;" th:href="@{/AdminHistory/addPesanan(idUser=${m.idUser})}">Add Pesanan</a>
+
+                                    <a class="btn btn-primary" th:href="@{/AdminHistory/filterPesanan(idUser=${m.idUser})}">Lihat Pesanan</a>
                                     
                                 </td>
                             </tr>
@@ -84,7 +86,8 @@
                                 <td th:text="${p.totalHarga}"></td>
                                 <td th:text="${p.status}"></td>
                                 <td>
-                                    <a class="profile-btn" th:href="@{/AdminHistory/edit(id=${p.id})}">Edit</a>
+                                    
+                                    <a class="btn btn-profile" th:href="@{/AdminHistory/edit(id=${p.id})}">Edit</a>
                                     
                                 </td>
                             </tr>

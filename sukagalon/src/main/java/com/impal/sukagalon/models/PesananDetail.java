@@ -49,6 +49,10 @@ public class PesananDetail {
     }
     
     public Double getSubTotal() { return subTotal; }
+
+    public void setSubTotal(Double subTotal) {
+        this.subTotal=subTotal;
+    };
     
     private void calculateSubTotal() {
         if (this.produk != null && this.kuantitas != null) {
